@@ -1,7 +1,7 @@
 NAME=epitech_container
 COMMAND=zsh
 
-#Create or change the common folder on your computer to share file between your docker and your os
+#Create or change the common folder on your computer to share file between the container and your system
 MOUNT_FOLDER=~/delivery
 
 build:
@@ -10,4 +10,10 @@ build:
 	docker build -t $(NAME) .
 
 run:
-	docker run -v $(MOUNT_FOLDER):/home/guest/delivery --privileged --user guest -it --rm $(NAME) $(COMMAND)
+	docker run -it \
+	--env="DISPLAY" \
+	--env="QT_X11_NO_MITSHM=1" \
+	-v $(MOUNT_FOLDER):/root/workspace \
+	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+	--rm $(NAME) $(COMMAND)
+	export containerId=$(docker ps -l -q)
