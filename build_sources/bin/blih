@@ -41,11 +41,15 @@ class blih:
     def __init__(self, baseurl='https://blih.epitech.eu/', user=None, token=None, verbose=False, user_agent='blih-' + str(version)):
         self._baseurl = baseurl
         self._user = user
-        if token:
+        if os.environ.get('BLIH_TOKEN') != "":
+            self._token = bytes(hashlib.sha512(bytes(os.environ.get('BLIH_TOKEN'), 'utf8')).hexdigest(), 'utf8')
+        elif token:
             self._token = token
         else:
             self.token_calc()
-        if self._user == None:
+        if os.environ.get('BLIH_USER') != "":
+            self._user = os.environ.get('BLIH_USER')
+        elif self._user == None:
            self._user = os.environ.get('BLIH_USER', getpass.getuser())
         self._verbose = verbose
         self._useragent = user_agent
