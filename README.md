@@ -18,7 +18,7 @@ This docker enable the forwarding of graphical flow from the container to your s
 
 4. Open a terminal from the XQuartz application and launch the command to enable the connection from client host:
 ```
-xhost +
+xhost + 127.0.0.1
 ```
 
 5. Launch the generation of the ssh-key for blih with:
@@ -45,7 +45,7 @@ make build
 
 4. To launch a session on your container go in the repository `DockerDumpEpitech`, launch:
 ```
-make run
+make run_mac
 ```
 
 5. To exit the container, launch:
@@ -56,7 +56,7 @@ exit
 ### Alias
 You could add an alias to be connect directly in the docker when running the command `fedora`: 
 ```
-echo "alias fedora="make -C ~/Documents/DockerDumpEpitech run""
+echo "alias fedora="make -C ~/Documents/DockerDumpEpitech run_mac""
 ```
 
 Try to run `xeyes` on your docker
