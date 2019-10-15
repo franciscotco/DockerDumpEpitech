@@ -1,21 +1,65 @@
 # DockerDumpEpitech
-Docker Epitech setup under fedora 30 with blih
-Depend on which system you are, you have to follow the proper guide depend on your system.
+Docker Epitech pull from offical epitech docker and setup under fedora 30 with blih.
 
-## Macos
+This docker enable the forwarding of graphical flow from the container to your system, that mean you can run graphical application from your container and get a graphical view.
 
-Prerequisite :
-Install docker for macos "https://docs.docker.com/docker-for-mac/install/"
-Install Xquartz for macos "https://www.xquartz.org/"
-Launch XQuartz. Under the XQuartz menu, select Preferences
-Go to the security tab and ensure "Allow connections from network clients" is checked, close the application and open it again.
-Open a terminal from the Xquartz application and run "xhost +" to allow connection from client host.
-Then open a terminal run "cd ~/Documents"
-Clone the repository in your document "git clone https://github.com/franciscotco/DockerDumpEpitech.git"
-Launch the generation of the sshkey with the command "ssh-keygen" for each question just press enter
-Go inside the repository and run "make build" to build the docker on your computer
-You could add an alias to connect you directly in the docker when running the command fedora in your terminal run "echo "alias fedora="cd ~/Documents/DockerDumpEpitech && make run"""
-Try to run xeyes on your docker
+## MacOs
+
+### Prerequisite
+
+1. Install [Docker](https://docs.docker.com/docker-for-mac/install/) on your Mac
+
+2. Install [XQuartz](https://www.xquartz.org/) on your Mac
+
+3. Setup the XQuartz app
+    * `Launch the XQuartz application` __&rarr;__ `Under the XQuartz menu` **&rarr;** `Select Preferences`
+    * Go to the security tab and ensure `Allow connections from network clients` is checked
+    * __Close XQuartz and open it again__.
+
+4. Open a terminal from the XQuartz application and launch the command to enable the connection from client host:
+```
+xhost +
+```
+
+5. Launch the generation of the ssh-key for blih with:
+```
+ssh-keygen -t rsa
+```
+
+### Docker installation
+
+1. Open a terminal on your Mac and launch:
+```
+cd ~/Documents
+```
+
+2. Clone the repository in your Documents folder:
+```
+git clone https://github.com/franciscotco/DockerDumpEpitech.git
+```
+
+3. Go inside the repository and run the command bellow to build the docker on your computer:
+```
+make build
+```
+
+4. To launch a session on your container go in the repository `DockerDumpEpitech`, launch:
+```
+make run
+```
+
+5. To exit the container, launch:
+```
+exit
+```
+
+### Alias
+You could add an alias to be connect directly in the docker when running the command `fedora`: 
+```
+echo "alias fedora="make -C ~/Documents/DockerDumpEpitech run""
+```
+
+Try to run `xeyes` on your docker
 
 ## Linux
 
