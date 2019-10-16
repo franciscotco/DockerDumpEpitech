@@ -16,9 +16,9 @@ This docker enable the forwarding of graphical flow from the container to your s
     * Go to the security tab and ensure `Allow connections from network clients` is checked
     * __Close XQuartz and open it again__.
 
-4. Open a terminal from the XQuartz application and launch the command to enable the connection from client host:
+4. Open a terminal from the XQuartz application and launch the command to enable the connection from any client host:
 ```
-xhost +
+xhost + 127.0.0.1
 ```
 
 5. Launch the generation of the ssh-key for blih with:
@@ -26,7 +26,7 @@ xhost +
 ssh-keygen -t rsa
 ```
 
-### Docker installation
+### Docker Installation
 
 1. Open a terminal on your Mac and launch:
 ```
@@ -63,3 +63,38 @@ Try to run `xeyes` on your docker
 
 ## Linux
 
+### Prerequisite
+
+1. Install `docker` and `x11-xserver-utils` with your favorite [package manager](https://en.wikipedia.org/wiki/Package_manager) 
+
+2. Enable the connection from any client host:
+```
+xhost
+```
+
+### Docker Installation
+
+1. Open a terminal on your Linux and launch:
+```
+cd ~/Documents
+```
+
+2. Clone the repository in your Documents folder:
+```
+git clone https://github.com/franciscotco/DockerDumpEpitech.git
+```
+
+3. Go inside the repository and run the command bellow to build the docker on your computer:
+```
+make build
+```
+
+4. To launch a session on your container go in the repository `DockerDumpEpitech`, launch:
+```
+make run_linux
+```
+
+5. To exit the container, launch:
+```
+exit
+```
