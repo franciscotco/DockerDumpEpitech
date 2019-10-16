@@ -16,4 +16,4 @@ run:
 	-v $(MOUNT_FOLDER):/root/workspace \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 	--rm $(NAME) $(COMMAND)
-	export containerId=$(docker ps -l -q)
+#	export containerId=$(docker ps -l -q)
