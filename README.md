@@ -113,3 +113,9 @@ exit
 ```
 xeyes
 ```
+
+### Alias
+You could add an alias to be connect directly in the docker when running the command `fedora`: 
+```
+echo "alias fedora="make -C ~/Documents/DockerDumpEpitech run""
+```
