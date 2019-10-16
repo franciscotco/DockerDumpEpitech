@@ -36,8 +36,8 @@ COPY ./build_sources/bin/blih /usr/bin/blih
 COPY ./build_sources/bin/blih /bin/blih
 
 ## Enter env login ex name.last_name@epitech.eu
-ENV BLIH_USER="francois.moine@epitech.eu"
-ENV BLIH_TOKEN="bbeT}T4L"
+ENV BLIH_USER=""
+ENV BLIH_TOKEN=""
 
 RUN git config --global user.email $BLIH_USER
 RUN git config --global user.name $BLIH_USER
