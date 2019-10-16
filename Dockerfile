@@ -7,37 +7,49 @@ RUN yum install -y bzip2 SFML emacs
 RUN yum install  xorg-x11-server-Xorg xorg-x11-xauth xorg-x11-apps -y
 RUN wget --no-check-certificate http://install.ohmyz.sh -O - | sh
 
-## configure emacs for epitech
-RUN git clone https://github.com/Epitech/epitech-emacs.git \
-    && cd epitech-emacs \
-    && git checkout 1f1ef05d25058e20050612e71578312bee513a5b \
-    && ./INSTALL.sh system \
-    && cd .. && rm -rf epitech-emacs
+## Download configuration emacs of epitech
+RUN git clone https://github.com/Epitech/epitech-emacs.git /tmp \
+    && /tmp/epitech-emacs/INSTALL.sh system
+
+#RUN git clone https://github.com/Epitech/epitech-emacs.git \
+#    && cd epitech-emacs \
+#    && git checkout 1f1ef05d25058e20050612e71578312bee513a5b \
+#    && ./INSTALL.sh system \
+#    && cd .. && rm -rf epitech-emacs
 
 ## Download blih
-RUN git clone https://github.com/Epitech/dump.git \
-    && cd dump \
-    && chmod 755 blih.py && cp blih.py /usr/bin/blih \
-    && cd .. && rm -rf dump
+RUN git clone https://github.com/Epitech/dump.git /tmp \
+    && chmod 755 /tmp/dump/blih.py ; cp /tmp/dump/blih.py /usr/bin/blih
 
-RUN git clone https://github.com/ronanboiteau/NormEZ.git \
-    && cd NormEZ \
-    && chmod 755 NormEZ.rb && cp NormEZ.rb /usr/bin/moulinette \
-    && cd .. && rm -rf NormEZ
+#RUN git clone https://github.com/Epitech/dump.git \
+#    && cd dump \
+#    && chmod 755 blih.py && cp blih.py /usr/bin/blih \
+#    && cd .. && rm -rf dump
+
+## Download normez
+RUN git clone https://github.com/ronanboiteau/NormEZ.git /tmp \
+    && chmod 755 /tmp/NormEZ/NormEZ.rb ; cp /tmp/NormEZ/NormEZ.rb /usr/bin/normez
+
+#RUN git clone https://github.com/ronanboiteau/NormEZ.git \
+#    && cd NormEZ \
+#    && chmod 755 NormEZ.rb && cp NormEZ.rb /usr/bin/moulinette \
+#    && cd .. && rm -rf NormEZ
 
 RUN echo "root:root" | chpasswd
 RUN echo "X11Forwarding yes" >> /etc/ssh/sshd_config
-RUN echo "source alias" >> /root/.zshrc && zsh
+RUN echo "source ~/.zsh/zshalias" >> /root/.zshrc && zsh
 
 COPY ./build_sources/id_rsa.pub /root/.ssh/id_rsa.pub
 COPY ./build_sources/id_rsa /root/.ssh/id_rsa
-COPY ./build_sources/alias /root/alias
-COPY ./build_sources/bin/blih /usr/bin/blih
-COPY ./build_sources/bin/blih /bin/blih
+COPY ./build_sources/zshalias /root/.zsh/zshalias
+# COPY ./build_sources/bin/blih /usr/bin/blih
+# COPY ./build_sources/bin/blih /bin/blih
 
-## Enter env login ex name.last_name@epitech.eu
+## Use the command login when you enter in the container to be logged at blih
 ENV BLIH_USER=""
 ENV BLIH_TOKEN=""
 
-RUN git config --global user.email $BLIH_USER
-RUN git config --global user.name $BLIH_USER
+ENV USER="name.last_name@epitech.eu"
+
+RUN git config --global user.email $USER
+RUN git config --global user.name $USER
