@@ -6,7 +6,7 @@ if test -z "$ssh_key"
 then
     echo -e "Not find ssh-key do you want to generate an ssh-key ?\nEnter yes or no"
     read confirm_ssh
-    if [ $confirm_ssh = y* ]
+    if [ $confirm_ssh = [yY]* ]
     then
 	ssh-keygen -t rsa
     else
