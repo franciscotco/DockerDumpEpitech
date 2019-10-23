@@ -28,12 +28,12 @@ RUN echo "source ~/.zsh/zshalias" >> /root/.zshrc && zsh
 COPY ./build_sources/id_rsa.pub /root/.ssh/id_rsa.pub
 COPY ./build_sources/id_rsa /root/.ssh/id_rsa
 COPY ./build_sources/zshalias /root/.zsh/zshalias
+COPY ./build_sources/zshrc_login /root/.zsh/zshrc_login
+COPY ./build_sources/bin/hash_passwd.py /usr/bin/login
 
-## Use the command login when you enter in the container to be logged at blih
-ENV BLIH_USER=""
-ENV BLIH_TOKEN=""
+#RUN echo "source ~/.zsh/zshrc_login" >> /root/.zshrc && zsh
 
-ENV USER="name.last_name@epitech.eu"
+ENV USER_LOGIN="name.last_name@epitech.eu"
 
-RUN git config --global user.email $USER
-RUN git config --global user.name $USER
+RUN git config --global user.email $USER_LOGIN
+RUN git config --global user.name $USER_LOGIN
