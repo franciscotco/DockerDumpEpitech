@@ -10,10 +10,12 @@ build:
 
 # Run docker on linux
 run:
+	xhost + 127.0.0.1
 	docker run -it \
 	--env="DISPLAY" \
 	--env="QT_X11_NO_MITSHM=1" \
 	-v $(MOUNT_FOLDER):/root/workspace \
 	--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 	--rm $(NAME) $(COMMAND)
+	xhost - 127.0.0.1
 #	export containerId=$(docker ps -l -q)
